@@ -4,7 +4,7 @@ import datetime
 import configparser
 import random
 
-from boombox import BoomBox
+from playsound import playsound
 
 config = configparser.ConfigParser()
 config.read("affirmations.ini")
@@ -74,7 +74,7 @@ def move_affirmation(file):
 
 def play(file):
     if file != None:
-        BoomBox(file).play()
+        playsound(file)
 
 
 def main():
