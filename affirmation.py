@@ -5,6 +5,7 @@ import datetime
 import configparser
 import random
 import RPi.GPIO as GPIO
+from threading import Thread
 
 config = configparser.ConfigParser()
 config.read("affirmations.ini")
@@ -85,8 +86,8 @@ def main():
 
     play(get_todays_affirmation())
 
-def button_callback(channel):
-    main()
+def button_callback():
+    Thread(target = main)
 
 try:
     GPIO.setwarnings(False)
@@ -94,7 +95,7 @@ try:
     GPIO.setup(4, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
     GPIO.add_event_detect(4,GPIO.RISING)
-    GPIO.add_event_callback(4, lambda _: main())
+    GPIO.add_event_callback(4, lambda _: button_callback())
 
     while True:
         pass
