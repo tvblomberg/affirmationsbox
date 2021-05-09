@@ -5,12 +5,8 @@ import datetime
 import configparser
 import random
 
-from pydub import AudioSegment
-from pydub.playback import play
-
 config = configparser.ConfigParser()
 config.read("affirmations.ini")
-
 
 def get_str(name, default_value=None):
     try:
@@ -45,7 +41,7 @@ def today_exists():
 
 
 def get_mp3s(folder_path):
-    return glob.glob(os.path.join(folder_path, "*.mp3"))
+    return glob.glob(os.path.join(folder_path, "*.mp4"))
 
 
 def todays_affirmation_exists():
@@ -76,8 +72,7 @@ def move_affirmation(file):
 
 def play(file):
     if file != None:
-        a = AudioSegment.from_mp3(file)
-        play(a)
+        os.system('/usr/bin/omxplayer -o alsa:hw:0,0 ' + file)
 
 
 def main():
