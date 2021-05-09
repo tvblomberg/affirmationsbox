@@ -1,10 +1,12 @@
+#!/usr/bin/env python3
 import glob
 import os
 import datetime
 import configparser
 import random
 
-from playsound import playsound
+from pydub import AudioSegment
+from pydub.playback import play
 
 config = configparser.ConfigParser()
 config.read("affirmations.ini")
@@ -74,7 +76,8 @@ def move_affirmation(file):
 
 def play(file):
     if file != None:
-        playsound(file)
+        a = AudioSegment.from_mp3(file)
+        play(a)
 
 
 def main():
