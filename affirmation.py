@@ -43,7 +43,7 @@ def today_exists():
 
 
 def get_mp3s(folder_path):
-    return glob.glob(os.path.join(folder_path, "*.mp4"))
+    return glob.glob(os.path.join(folder_path, "*.mp3"))
 
 
 def todays_affirmation_exists():
