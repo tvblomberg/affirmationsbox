@@ -87,7 +87,7 @@ def main():
     play(get_todays_affirmation())
 
 def button_callback():
-    Thread(target = main)
+    Thread(target = main).start()
 
 try:
     GPIO.setwarnings(False)
